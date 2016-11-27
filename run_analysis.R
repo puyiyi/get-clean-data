@@ -26,13 +26,6 @@ activity_Labels <- read.table("./UCI HAR Dataset/activity_labels.txt",header = F
 Data$activity<-factor(Data$activity);
 Data$activity<- factor(Data$activity,labels=as.character(activity_Labels$V2))
 
-names(Data)<-gsub("^t", "time", names(Data))
-names(Data)<-gsub("^f", "frequency", names(Data))
-names(Data)<-gsub("Acc", "Accelerometer", names(Data))
-names(Data)<-gsub("Gyro", "Gyroscope", names(Data))
-names(Data)<-gsub("Mag", "Magnitude", names(Data))
-names(Data)<-gsub("BodyBody", "Body", names(Data))
-
 library(dplyr)
 Data2<-aggregate(. ~subject + activity, Data, mean)
 Data2<-Data2[order(Data2$subject,Data2$activity),]
