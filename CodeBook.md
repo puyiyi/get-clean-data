@@ -23,7 +23,7 @@ activity_Labels <- read.table("./UCI HAR Dataset/activity_labels.txt",header = F
 Data$activity<-factor(Data$activity);
 Data$activity<- factor(Data$activity,labels=as.character(activity_Labels$V2))
 
-#output file
+#output tidy file
 Data2<-aggregate(. ~subject + activity, Data, mean)
 Data2<-Data2[order(Data2$subject,Data2$activity),]
 write.table(Data2, file = "tidydata.txt",row.name=FALSE)
